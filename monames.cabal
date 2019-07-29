@@ -1,0 +1,35 @@
+name:                monames
+version:             0.1.0.0
+synopsis:            A codenames clone
+homepage:            https://github.com/gergesh/monames#readme
+license:             GPL-3
+license-file:        LICENSE
+author:              Yoav Shai
+maintainer:          gergesh@gmail.com
+copyright:           2019 Yoav Shai
+category:            Game
+build-type:          Simple
+cabal-version:       >=1.10
+extra-source-files:  README.md
+
+executable monames
+  hs-source-dirs:      src
+  main-is:             Main.hs
+  other-modules:       Dicts
+                     , Logic
+                     , Rendering
+                     , Game
+  default-language:    Haskell2010
+  default-extensions:  NoImplicitPrelude
+                     , OverloadedStrings
+  build-depends:       base >= 4.7 && < 5
+                     , basic-prelude
+                     , async
+                     , file-embed
+                     , lens
+                     , network
+                     , parsec
+                     , random-fu
+                     , stm
+                     , text
+                     , vector
