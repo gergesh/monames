@@ -60,6 +60,7 @@ giveClue w g
 -- | Simulate the process of a player guessing a word, and either subtract a guess or reset them
 guessWord :: Text -> Game -> Game
 guessWord w g
+  | w == "-" = gameClue . _2 .~ 0 $ g -- Forfeit additional guesses.
   | cardIndexByText w (g ^. gameBoard) == Nothing = g
 guessWord w g
   | g ^. gameBoard ^?! ix idx . cardRevealed = g -- If the card was already revealed, do nothing.
