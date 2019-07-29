@@ -5,7 +5,7 @@ import Control.Lens (view)
 import Control.Lens.At (ix)
 import Control.Lens.Operators
 import Control.Lens.Tuple (_2)
-import Data.Text (pack, unpack)
+import Data.Text (pack)
 import qualified Data.Vector as V
 import Text.Parsec (many1, parse)
 import Text.Parsec.Char (digit, letter, space)

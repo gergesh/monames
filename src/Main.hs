@@ -4,20 +4,16 @@ import BasicPrelude
 import Control.Concurrent
 import Control.Concurrent.Async
 import Control.Concurrent.STM
-import Control.Concurrent.STM.TChan
-import Control.Concurrent.STM.TVar
-import Control.Exception
+import Control.Exception (catch, SomeException(SomeException))
 import Control.Lens.Operators
-import Control.Monad
 import Data.Random
-import Data.Text.IO (hGetLine, hPutStr, hPutStrLn)
+import Data.Text.IO (hGetLine, hPutStr)
 import Data.Vector (fromList)
 import Network.Socket
 import System.IO
-  ( BufferMode(NoBuffering)
+  ( BufferMode (NoBuffering)
   , Handle
-  , IOMode(ReadWriteMode)
-  , hClose
+  , IOMode (ReadWriteMode)
   , hSetBuffering
   )
 

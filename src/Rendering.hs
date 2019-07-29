@@ -128,12 +128,11 @@ renderGameOver p g =
   <> "\n"
   where
     (GameOver winningTeam) = g ^. gameState
-    playerWon = winningTeam == p ^. playerTeam
 
 -- | Render the game for the player.
 renderGame :: Player -> Game -> Text
 renderGame p g
-  | GameOver t <- g ^. gameState = renderGameOver p g
+  | GameOver _ <- g ^. gameState = renderGameOver p g
 renderGame p g =
   clearScreen
   <> "Hey there! You are a " <> renderPlayer p <> ", and it is " <> renderTurn p g <> " turn."
