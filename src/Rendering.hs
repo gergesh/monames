@@ -87,7 +87,9 @@ renderTurn p g
 
 -- | Render the line containing the current clue.
 renderClue :: Clue -> Text
-renderClue (c, n) = "The current clue is: " <> c <> " " <> tshow n
+renderClue (Clue c n) = "The current clue is: " <> c <> " " <> showM n
+  where showM Nothing  = "-"
+        showM (Just x) = tshow x
 
 -- | Render a team's name and its color.
 renderTeam :: Team -> Text

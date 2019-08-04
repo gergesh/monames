@@ -36,7 +36,7 @@ randomBoard d = do
 newGame :: IO Game
 newGame = do
   b <- randomBoard originalDict
-  return $ Game b (Player BlueTeam Spymaster) ("", 0) Running noPlayers
+  return $ Game b (Player BlueTeam Spymaster) (Clue "" (Just 0)) Running noPlayers
   where
     noPlayers = GamePlayers False False 0 0
 

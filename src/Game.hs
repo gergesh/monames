@@ -44,7 +44,10 @@ data State = Running | GameOver Team
 
 type Board = Vector Card
 
-type Clue = (Text, Int)
+data Clue = Clue { _clueText  :: Text
+                 , _clueCount :: Maybe Int
+                 } deriving (Eq, Show)
+makeLenses ''Clue
 
 data GamePlayers = GamePlayers { _hasBlueSpymaster :: Bool
                                , _hasRedSpymaster  :: Bool
