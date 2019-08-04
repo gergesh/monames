@@ -15,6 +15,7 @@ extra-source-files:  README.md
 executable monames
   hs-source-dirs:      src
   main-is:             Main.hs
+  ghc-options:         -Wall -O2
   other-modules:       Dicts
                      , Logic
                      , Rendering
