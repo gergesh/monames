@@ -2,8 +2,8 @@
 
 module Dicts where
 
-import Data.FileEmbed
-import Data.Text
+import           Data.FileEmbed
+import           Data.Text
 
 type Dictionary = [Text]
 

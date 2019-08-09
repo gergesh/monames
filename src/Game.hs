@@ -2,16 +2,16 @@
 
 module Game where
 
-import BasicPrelude
-import Control.Lens
-import Data.Vector (Vector)
+import           BasicPrelude
+import           Control.Lens
+import           Data.Vector                    ( Vector )
 
 data Team = BlueTeam | RedTeam
             deriving (Eq, Show)
 
 otherTeam :: Team -> Team
 otherTeam BlueTeam = RedTeam
-otherTeam RedTeam = BlueTeam
+otherTeam RedTeam  = BlueTeam
 
 data Role = Spymaster | Guesser
             deriving (Eq, Show)
@@ -65,7 +65,5 @@ data Game = Game { _gameBoard   :: Board
 makeLenses ''Game
 
 defaultColors :: [Color]
-defaultColors = replicate 8 Blue
-             ++ replicate 7 Red
-             ++ replicate 9 Yellow
-             ++ replicate 1 Black
+defaultColors =
+  replicate 8 Blue ++ replicate 7 Red ++ replicate 9 Yellow ++ replicate 1 Black
