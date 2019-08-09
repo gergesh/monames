@@ -14,6 +14,7 @@ import           Text.Parsec.Char               ( char
                                                 , letter
                                                 , space
                                                 )
+import           Text.Parsec.Combinator         ( eof )
 import           Text.Parsec.Text               ( Parser )
 
 import           Game
@@ -47,10 +48,9 @@ parseClue = do
   word <- many1 letter
   space
   n <- many1 digit <|> fmap return (char '-')
-  let n' = case n of
-        "-" -> Nothing
-        _   -> Just $ read . pack $ n
-  return $ Clue (pack word) n'
+  eof
+  return $ Clue (pack word) (toClue n)
+  where toClue x = if x == "-" then Nothing else Just . read . pack $ x
 
 -- | Simulate the Spymaster giving a clue.
 giveClue :: Text -> Game -> Game
