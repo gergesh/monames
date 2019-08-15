@@ -6,16 +6,15 @@ import           Control.Lens.At                ( ix )
 import           Control.Lens.Operators
 import           Data.Text                      ( pack )
 import qualified Data.Vector                   as V
-import           Text.Parsec                    ( many1
-                                                , parse
-                                                )
-import           Text.Parsec.Char               ( char
+import           Text.Parsec                    ( Parsec
+                                                , char
                                                 , digit
+                                                , eof
                                                 , letter
+                                                , parse
                                                 , space
+                                                , many1
                                                 )
-import           Text.Parsec.Combinator         ( eof )
-import           Text.Parsec.Text               ( Parser )
 
 import           Game
 
@@ -43,7 +42,7 @@ checkGameOver g = case checkWinner g of
   Nothing -> g
 
 -- | Parse a clue from the spymaster. Has to be one word and one number.
-parseClue :: Parser Clue
+parseClue :: Parsec Text () Clue
 parseClue = do
   word <- many1 letter
   space
