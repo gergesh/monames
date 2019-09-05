@@ -74,9 +74,7 @@ talk h game = do
     return p
   c <- atomically newTChan -- A channel for communication between the receive from client and receive from state threads
   catch (void $ race (server h game c p) (receive h c)) $ \(SomeException _) ->
-    atomically
-      $   fmap (gamePlayers %~ removePlayer p) (readTVar game)
-      >>= writeTVar game
+    atomically $ modifyTVar game $ gamePlayers %~ removePlayer p
 
 -- | Receive from the client, write to the channel (which is read by `newline`)
 receive :: Handle -> TChan Text -> IO ()
