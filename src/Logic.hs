@@ -65,18 +65,17 @@ giveClue w g
 -- | Simulate the process of a player guessing a word, and either subtract a guess or reset them
 guessWord :: Text -> Game -> Game
 guessWord w g | w == "-" = gameClue . clueCount .~ Just 0 $ g
-              | -- Forfeit additional guesses.
-                cardIndexByText w (g ^. gameBoard) == Nothing = g
+              | cardIndexByText w (g ^. gameBoard) == Nothing = g
 guessWord w g
   | g ^. gameBoard ^?! ix idx . cardRevealed = g
-  | otherwise                                = g & gameBoard . ix idx . cardRevealed .~ True
-                                                 & gameClue . clueCount %~ fmap modifierFun
+  | otherwise = g & gameBoard .  ix idx .  cardRevealed .~ True
+                  & gameClue .  clueCount %~ fmap modifierFun
  where
   (Just idx)  = cardIndexByText w (g ^. gameBoard)
   cardCol     = ((g ^. gameBoard) V.! idx) ^. cardColor
   currentTeam = g ^. gameTurn ^. playerTeam
-  guessedGood = colorMatches currentTeam cardCol
-  modifierFun = if guessedGood then subtract 1 else const 0
+  guessedWell = colorMatches currentTeam cardCol
+  modifierFun = if guessedWell then subtract 1 else const 0
 
 -- | Add the needed player to the GamePlayers instance and return him.
 addNeededPlayer :: GamePlayers -> (GamePlayers, Player)
